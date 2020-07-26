@@ -1,0 +1,489 @@
+---
+all_ipv4_addresses:
+all_ipv6_addresses:
+ansible_local:
+apparmor:
+    status:
+architecture:
+bios_date:
+bios_version:
+cmdline:
+    BOOT_IMAGE:
+    crashkernel:
+    quiet:
+    rd.lvm.lv:
+    resume:
+    rhgb:
+    ro:
+    root:
+date_time:
+    date:
+    day:
+    epoch:
+    hour:
+    iso8601:
+    iso8601_basic:
+    iso8601_basic_short:
+    iso8601_micro:
+    minute:
+    month:
+    second:
+    time:
+    tz:
+    tz_offset:
+    weekday:
+    weekday_number:
+    weeknumber:
+    year:
+default_ipv4:
+    address:
+    alias:
+    broadcast:
+    gateway:
+    interface:
+    macaddress:
+    mtu:
+    netmask:
+    network:
+    type:
+default_ipv6:
+device_links:
+    ids:
+        dm-0:
+    labels:
+    masters:
+        sda2:
+    uuids:
+        dm-0:
+devices:
+    dm-0:
+        holders:
+        host:
+        links:
+            ids:
+            labels:
+            masters:
+            uuids:
+        model: null
+        partitions:
+        removable:
+        rotational:
+        sas_address:
+        sas_device_handle:
+        scheduler_mode:
+        sectors:
+        sectorsize:
+        size:
+        support_discard:
+        vendor:
+        virtual:
+discovered_interpreter_python:
+distribution:
+distribution_file_parsed:
+distribution_file_path:
+distribution_file_search_string:
+distribution_file_variety:
+distribution_major_version:
+distribution_release:
+distribution_version:
+dns:
+    nameservers:
+    search:
+docker0:
+    active:
+    device:
+    features:
+        esp_hw_offload:
+        esp_tx_csum_hw_offload:
+        fcoe_mtu:
+        generic_receive_offload:
+        generic_segmentation_offload:
+        highdma:
+        hw_tc_offload:
+        l2_fwd_offload:
+        large_receive_offload:
+        loopback:
+        netns_local:
+        ntuple_filters:
+        receive_hashing:
+        rx_all:
+        rx_checksumming:
+        rx_fcs:
+        rx_gro_hw:
+        rx_udp_tunnel_port_offload:
+        rx_vlan_filter:
+        rx_vlan_offload:
+        rx_vlan_stag_filter:
+        rx_vlan_stag_hw_parse:
+        scatter_gather:
+        tcp_segmentation_offload:
+        tls_hw_record:
+        tls_hw_rx_offload:
+        tls_hw_tx_offload:
+        tx_checksum_fcoe_crc:
+        tx_checksum_ip_generic:
+        tx_checksum_ipv4:
+        tx_checksum_ipv6:
+        tx_checksum_sctp:
+        tx_checksumming:
+        tx_esp_segmentation:
+        tx_fcoe_segmentation:
+        tx_gre_csum_segmentation:
+        tx_gre_segmentation:
+        tx_gso_partial:
+        tx_gso_robust:
+        tx_ipxip4_segmentation:
+        tx_ipxip6_segmentation:
+        tx_lockless:
+        tx_nocache_copy:
+        tx_scatter_gather:
+        tx_scatter_gather_fraglist:
+        tx_sctp_segmentation:
+        tx_tcp6_segmentation:
+        tx_tcp_ecn_segmentation:
+        tx_tcp_mangleid_segmentation:
+        tx_tcp_segmentation:
+        tx_udp_segmentation:
+        tx_udp_tnl_csum_segmentation:
+        tx_udp_tnl_segmentation:
+        tx_vlan_offload:
+        tx_vlan_stag_hw_insert:
+        vlan_challenged:
+    hw_timestamp_filters:
+    id:
+    interfaces:
+    ipv4:
+        address:
+        broadcast:
+        netmask:
+        network:
+    macaddress:
+    mtu:
+    promisc:
+    stp:
+    timestamping:
+    type:
+domain:
+effective_group_id:
+effective_user_id:
+ens192:
+    active:
+    device:
+    features:
+        esp_hw_offload:
+        esp_tx_csum_hw_offload:
+        fcoe_mtu:
+        generic_receive_offload:
+        generic_segmentation_offload:
+        highdma:
+        hw_tc_offload:
+        l2_fwd_offload:
+        large_receive_offload:
+        loopback:
+        netns_local:
+        ntuple_filters:
+        receive_hashing:
+        rx_all:
+        rx_checksumming:
+        rx_fcs:
+        rx_gro_hw:
+        rx_udp_tunnel_port_offload:
+        rx_vlan_filter:
+        rx_vlan_offload:
+        rx_vlan_stag_filter:
+        rx_vlan_stag_hw_parse:
+        scatter_gather:
+        tcp_segmentation_offload:
+        tls_hw_record:
+        tls_hw_rx_offload:
+        tls_hw_tx_offload:
+        tx_checksum_fcoe_crc:
+        tx_checksum_ip_generic:
+        tx_checksum_ipv4:
+        tx_checksum_ipv6:
+        tx_checksum_sctp:
+        tx_checksumming:
+        tx_esp_segmentation:
+        tx_fcoe_segmentation:
+        tx_gre_csum_segmentation:
+        tx_gre_segmentation:
+        tx_gso_partial:
+        tx_gso_robust:
+        tx_ipxip4_segmentation:
+        tx_ipxip6_segmentation:
+        tx_lockless:
+        tx_nocache_copy:
+        tx_scatter_gather:
+        tx_scatter_gather_fraglist:
+        tx_sctp_segmentation:
+        tx_tcp6_segmentation:
+        tx_tcp_ecn_segmentation:
+        tx_tcp_mangleid_segmentation:
+        tx_tcp_segmentation:
+        tx_udp_segmentation:
+        tx_udp_tnl_csum_segmentation:
+        tx_udp_tnl_segmentation:
+        tx_vlan_offload:
+        tx_vlan_stag_hw_insert:
+        vlan_challenged:
+    hw_timestamp_filters:
+    ipv4:
+        address:
+        broadcast:
+        netmask:
+        network:
+    ipv6:
+    -   address:
+        prefix:
+        scope:
+    macaddress:
+    module:
+    mtu:
+    pciid:
+    promisc:
+    speed:
+    timestamping:
+    type:
+env:
+    DBUS_SESSION_BUS_ADDRESS:
+    HISTTIMEFORMAT:
+    HOME:
+    KRB5CCNAME:
+    LANG:
+    LC_ALL:
+    LC_NUMERIC:
+    LESSOPEN:
+    LOGNAME:
+    LS_COLORS:
+    PATH:
+    PWD:
+    SELINUX_LEVEL_REQUESTED:
+    SELINUX_ROLE_REQUESTED:
+    SELINUX_USE_CURRENT_RANGE:
+    SHELL:
+    SHLVL:
+    SSH_CLIENT:
+    SSH_CONNECTION:
+    SSH_TTY:
+    S_COLORS:
+    TERM:
+    TIME_STYLE:
+    USER:
+    XDG_RUNTIME_DIR:
+    XDG_SESSION_ID:
+    _:
+fibre_channel_wwn:
+fips: false
+form_factor:
+fqdn:
+gather_subset:
+- all
+hostname:
+hostnqn:
+interfaces:
+- lo
+- ens192
+- docker0
+is_chroot:
+iscsi_iqn:
+kernel:
+kernel_version:
+lo:
+    active:
+    device:
+    features:
+        esp_hw_offload:
+        esp_tx_csum_hw_offload:
+        fcoe_mtu:
+        generic_receive_offload:
+        generic_segmentation_offload:
+        highdma:
+        hw_tc_offload:
+        l2_fwd_offload:
+        large_receive_offload:
+        loopback:
+        netns_local:
+        ntuple_filters:
+        receive_hashing:
+        rx_all:
+        rx_checksumming:
+        rx_fcs:
+        rx_gro_hw:
+        rx_udp_tunnel_port_offload:
+        rx_vlan_filter:
+        rx_vlan_offload:
+        rx_vlan_stag_filter:
+        rx_vlan_stag_hw_parse:
+        scatter_gather:
+        tcp_segmentation_offload:
+        tls_hw_record:
+        tls_hw_rx_offload:
+        tls_hw_tx_offload:
+        tx_checksum_fcoe_crc:
+        tx_checksum_ip_generic:
+        tx_checksum_ipv4:
+        tx_checksum_ipv6:
+        tx_checksum_sctp:
+        tx_checksumming:
+        tx_esp_segmentation:
+        tx_fcoe_segmentation:
+        tx_gre_csum_segmentation:
+        tx_gre_segmentation:
+        tx_gso_partial:
+        tx_gso_robust:
+        tx_ipxip4_segmentation:
+        tx_ipxip6_segmentation:
+        tx_lockless:
+        tx_nocache_copy:
+        tx_scatter_gather:
+        tx_scatter_gather_fraglist:
+        tx_sctp_segmentation:
+        tx_tcp6_segmentation:
+        tx_tcp_ecn_segmentation:
+        tx_tcp_mangleid_segmentation:
+        tx_tcp_segmentation:
+        tx_udp_segmentation:
+        tx_udp_tnl_csum_segmentation:
+        tx_udp_tnl_segmentation:
+        tx_vlan_offload:
+        tx_vlan_stag_hw_insert:
+        vlan_challenged:
+    hw_timestamp_filters:
+    ipv4:
+        address: 127.0.0.1
+        broadcast: host
+        netmask: 255.0.0.0
+        network: 127.0.0.0
+    ipv6:
+    -   address: ::1
+        prefix: '128'
+        scope: host
+    mtu:
+    promisc:
+    timestamping:
+    type: loopback
+lsb:
+machine:
+machine_id:
+memfree_mb:
+memory_mb:
+    nocache:
+        free:
+        used:
+    real:
+        free:
+        total:
+        used:
+    swap:
+        cached:
+        free:
+        total:
+        used:
+memtotal_mb:
+module_setup:
+mounts:
+-   block_available:
+    block_size:
+    block_total:
+    block_used:
+    device:
+    fstype:
+    inode_available:
+    inode_total:
+    inode_used:
+    mount:
+    options:
+    size_available:
+    size_total:
+    uuid:
+-   block_available:
+    block_size:
+    block_total:
+    block_used:
+    device:
+    fstype:
+    inode_available:
+    inode_total:
+    inode_used:
+    mount:
+    options:
+    size_available:
+    size_total:
+    uuid:
+-   block_available:
+    block_size:
+    block_total:
+    block_used:
+    device:
+    fstype:
+    inode_available:
+    inode_total:
+    inode_used:
+    mount:
+    options:
+    size_available:
+    size_total:
+    uuid:
+nodename:
+os_family:
+pkg_mgr:
+proc_cmdline:
+    BOOT_IMAGE:
+    crashkernel:
+    quiet: true
+    rd.lvm.lv:
+    resume:
+    rhgb:
+    ro:
+    root:
+processor:
+processor_cores:
+processor_count:
+processor_threads_per_core:
+processor_vcpus:
+product_name:
+product_serial:
+product_uuid:
+product_version:
+python:
+    executable:
+    has_sslcontext:
+    type:
+    version:
+        major:
+        micro:
+        minor:
+        releaselevel:
+        serial:
+    version_info:
+python_version:
+real_group_id:
+real_user_id:
+selinux:
+    config_mode:
+    mode:
+    policyvers:
+    status:
+    type:
+selinux_python_present:
+service_mgr:
+ssh_host_key_ecdsa_public:
+ssh_host_key_ed25519_public:
+ssh_host_key_rsa_public:
+swapfree_mb:
+swaptotal_mb:
+system:
+system_capabilities:
+system_capabilities_enforced:
+system_vendor:
+uptime_seconds:
+user_dir:
+user_gecos:
+user_gid:
+user_id:
+user_shell:
+user_uid:
+userspace_architecture:
+userspace_bits:
+virtualization_role:
+virtualization_type:

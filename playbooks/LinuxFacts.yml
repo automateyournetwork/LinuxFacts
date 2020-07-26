@@ -1,0 +1,221 @@
+---
+
+- hosts: LINUX
+# Prompt for Username and Password #
+  vars_prompt:
+    - name: Linux_User_Prompt
+      prompt: "Enter Linux Username"
+      private: no
+    - name: Linux_Password_Prompt
+      prompt: "Enter Linux Password"
+      private: yes      
+  tasks:
+# Register User Name #
+    - set_fact:
+        linux_user: "{{ Linux_User_Prompt }}"        
+      no_log: true
+      delegate_to: localhost
+      run_once: true 
+# Register Password #
+    - set_fact:        
+        linux_password: "{{ Linux_Password_Prompt }}"
+      no_log: true
+      delegate_to: localhost
+      run_once: true   
+# Gather Ansible Facts About Host #
+    - name: Gather Ansible Facts About Host
+      setup:
+        gather_subset:
+          - all
+    - debug: 
+        msg: "{{ ansible_facts }}"
+
+# Create JSON file with Ansible Facts #
+    - name: Create raw JSON file
+      copy: 
+        content: | 
+          {% for host in ansible_play_hosts %}
+          {{ ansible_facts | to_nice_json }}
+          {% endfor %}
+        dest: ../documentation/SERVERS/LINUX/json/server_facts.json       
+      delegate_to: localhost
+      run_once: true 
+
+# Create YAML file with Ansible Facts #
+    - name: Create raw YAML
+      copy: 
+        content: | 
+          {% for host in ansible_play_hosts %}
+          {{ ansible_facts | to_nice_yaml }}
+          {% endfor %}
+        dest: ../documentation/SERVERS/LINUX/yaml/server_facts.yml
+      delegate_to: localhost
+      run_once: true
+
+# Add Headers to YAML #
+    - name: Header Row
+      lineinfile:
+        path: ../documentation/SERVERS/LINUX/yaml/server_facts.yml
+        insertbefore: BOF
+        line: ---        
+      delegate_to: localhost
+
+# Set Facts #
+    - set_fact:
+        nodename: "{{ ansible_facts['nodename'] }}" 
+        domain: "{{ ansible_facts['domain'] }}"
+        all_ipv4_addresses: "{{ ansible_facts['all_ipv4_addresses'] }}"
+        all_ipv6_addresses: "{{ ansible_facts['all_ipv6_addresses'] }}"
+        architecture: "{{ ansible_facts['architecture'] }}"
+        bios_date: "{{ ansible_facts['bios_date'] }}"
+        bios_version: "{{ ansible_facts['bios_version'] }}"        
+        interfaces: "{{ ansible_facts['interfaces'] }}" 
+        alias: "{{ ansible_facts['default_ipv4']['alias'] }}"
+        interface: "{{ ansible_facts['default_ipv4']['interface'] }}"
+        address: "{{ ansible_facts['default_ipv4']['address'] }}" 
+        broadcast: "{{ ansible_facts['default_ipv4']['broadcast'] }}" 
+        netmask: "{{ ansible_facts['default_ipv4']['netmask'] }}" 
+        network: "{{ ansible_facts['default_ipv4']['network'] }}"
+        gateway: "{{ ansible_facts['default_ipv4']['gateway'] }}"
+        mac_address: "{{ ansible_facts['default_ipv4']['macaddress'] }}"
+        mtu: "{{ ansible_facts['default_ipv4']['mtu'] }}"
+        distribution: "{{ ansible_facts['distribution'] }}"
+        major_release: "{{ ansible_facts['distribution_major_version'] }}"
+        distribution_release: "{{ ansible_facts['distribution_version'] }}"
+        name_servers: "{{ ansible_facts['dns']['nameservers'] }}"
+        search: "{{ ansible_facts['dns']['search'] }}"
+        iscsi_iqn: "{{ ansible_facts['iscsi_iqn'] }}"
+        mem_free_mb: "{{ ansible_facts['memfree_mb'] }}"
+        mem_total_mb:  "{{ ansible_facts['memtotal_mb'] }}"
+        processor_cores:  "{{ ansible_facts['processor_cores'] }}"
+        processor_count:  "{{ ansible_facts['processor_count'] }}"
+        processor: "{{ ansible_facts['processor'] }}"
+        python_version: "{{ ansible_facts['python_version'] }}"
+        uptime_seconds: "{{ ansible_facts['uptime_seconds'] }}"
+        virtualization_type: "{{ ansible_facts['virtualization_type'] }}"
+        virtualization_role: "{{ ansible_facts['virtualization_role'] }}"
+# Create CSV file with results #
+    - name: Create CSV
+      copy: 
+        content: | 
+          {% for host in ansible_play_hosts %}
+          {{ nodename }},{{ domain }},{% for ipv4_address in all_ipv4_addresses %}{{ ipv4_address }}{% endfor %},{% for ipv6_address in all_ipv6_addresses %}{{ ipv6_address }}{% endfor %},{{ architecture }},{{ bios_date }},{{ bios_version }},{% for interface in interfaces %}{{ interface }}{% endfor %},{{ alias }},{{ interface }},{{ address }},{{ broadcast }},{{ netmask }},{{ network }},{{ gateway }},{{ mac_address }},{{ mtu }},{{ distribution }},{{ major_release }},{{ distribution_release }},{% for nameserver in name_servers %} {{ nameserver }} {% endfor %},{{ search }},{{ iscsi_iqn }},{{ mem_free_mb }},{{ mem_total_mb }},{{ processor_cores }},{{ processor_count }},{{ processor[2] }},{{ python_version }},{{ uptime_seconds }},{{ virtualization_type }},{{ virtualization_role }}
+          {% endfor %}
+        dest: ../documentation/SERVERS/LINUX/csv/server_facts.csv       
+      delegate_to: localhost
+      run_once: true 
+
+# Format CSV #
+    - name: Format CSV File Clean Up
+      replace:
+        path: ../documentation/SERVERS/LINUX/csv/server_facts.csv
+        regexp: '\[|\]|"'
+        replace: ''      
+      delegate_to: localhost
+      run_once: true 
+
+# Format CSV #
+    - name: Format CSV File Clean Up
+      replace:
+        path: ../documentation/SERVERS/LINUX/csv/server_facts.csv
+        regexp: "'"
+        replace: ''
+      delegate_to: localhost
+      run_once: true 
+
+# Add Header Row to CSV #
+    - name: Header Row
+      lineinfile:
+        path: ../documentation/SERVERS/LINUX/csv/server_facts.csv
+        insertbefore: BOF
+        line: Hostname,Domain,IPv4 Addresses,IPv6 Addresses,Architecture,BIOS Date,BIOS Version,Interaces,Default IPv4 Alias,Default Interface,Default IPv4 Address,Default IPv4 Broadcast,Default IPv4 Netmask,Default IPv4 Network,Default IPv4 Gateway,Default MAC Address,Default MTU,Distrubtion,Major Release,Distribution Release,Name Servers,Search,iSCSI IQN,Total Memory Free (MB),Total Memory(MB),CPU Cores,CPU Count,CPU,Python Version,Uptime (sec),Virtualization Type,Virtualization Role
+      delegate_to: localhost
+
+# Create Markdown file with results #
+    - name: Create Markdown
+      copy: 
+        content: | 
+          {% for host in ansible_play_hosts %}
+          | {{ nodename }} | {{ domain }} | {% for ipv4_address in all_ipv4_addresses %}{{ ipv4_address }}{% endfor %} | {% for ipv6_address in all_ipv6_addresses %}{{ ipv6_address }}{% endfor %} | {{ architecture }} | {{ bios_version }} | {{ bios_date }} | {% for interface in interfaces %} {{ interface }} {% endfor %} | {{ alias }} | {{ interface }} | {{ address }} | {{ broadcast }} | {{ netmask }} | {{ network }} | {{ gateway }} | {{ mac_address }} | {{ mtu }} | {{ distribution }} | {{ major_release }} | {{ distribution_release }} | {% for nameserver in name_servers %} {{ nameserver }} {% endfor %} | {{ search }} | {{ iscsi_iqn }} | {{ mem_free_mb }} | {{ mem_total_mb }} | {{ processor_cores }} | {{ processor_count }} | {{ processor[2] }} | {{ python_version }} | {{ uptime_seconds }} | {{ virtualization_type }} | {{ virtualization_role }} |
+          {% endfor %}
+        dest: ../documentation/SERVERS/LINUX/markdown/server_facts.md    
+      delegate_to: localhost
+      run_once: true 
+      
+# Format Markdown #
+    - name: Format Markdown File New Lines
+      replace:
+        path: ../documentation/SERVERS/LINUX/markdown/server_facts.md
+        regexp: '],'
+        replace: ']\n'
+      delegate_to: localhost
+      run_once: true 
+
+# Format Markdown #
+    - name: Format Markdown File Clean Up
+      replace:
+        path: ../documentation/SERVERS/LINUX/markdown/server_facts.md
+        regexp: '\[|\]|"'
+        replace: ''      
+      delegate_to: localhost
+      run_once: true 
+
+# Format Markdown #
+    - name: Format Markdown File Commas to Pipes
+      replace:
+        path: ../documentation/SERVERS/LINUX/markdown/server_facts.md
+        regexp: ','
+        replace: ' | '
+      delegate_to: localhost
+      run_once: true 
+
+# Format Markdown #
+    - name: Format Markdown File Clean Up
+      replace:
+        path: ../documentation/SERVERS/LINUX/csv/server_facts.csv
+        regexp: "'"
+        replace: ''
+      delegate_to: localhost
+      run_once: true 
+
+# Add Header Rows to Markdown #
+    - name: Header Row
+      lineinfile:
+        path: ../documentation/SERVERS/LINUX/markdown/server_facts.md
+        insertbefore: BOF
+        line: "{{ item.property }}"
+      with_items:
+        - { property: '| -------- | ------ | -------------- | -------------- | ------------ | --------- | ------------ | --------- | ------------------ | ----------------- | ---------------------| ---------------------- | -------------------- | -------------------- | -------------------- | ------------------- | ----------- | ----------- | ------------- | -------------------- | ------------ | ------ | --------- | ---------------------- | ---------------- | --------- | --------- | --- | -------------- | ------------ | ------------------- | ------------------- |' }
+        - { property: '| Hostname | Domain | IPv4 Addresses | IPv6 Addresses | Architecture | BIOS Date | BIOS Version | Interaces | Default IPv4 Alias | Default Interface | Default IPv4 Address | Default IPv4 Broadcast | Default IPv4 Netmask | Default IPv4 Network | Default IPv4 Gateway | Default MAC Address | Default MTU | Distrubtion | Major Release | Distribution Release | Name Servers | Search | iSCSI IQN | Total Memory Free (MB) | Total Memory(MB) | CPU Cores | CPU Count | CPU | Python Version | Uptime (sec) | Virtualization Type | Virtualization Role |' }
+        - { property: '# LINUX Servers' }        
+      delegate_to: localhost
+
+# Create Mind Map # 
+    - name: create server_facts Mind Map 
+      shell: "markmap --no-open ../documentation/SERVERS/LINUX/markdown/server_facts.md -o ../documentation/SERVERS/LINUX/mindmap/server_facts.html"
+      register: markmap
+      delegate_to: localhost
+
+# Git Add / Commit / Push #
+- hosts: localhost
+  vars_prompt:
+    - name: git_commit_prompt
+      prompt: "Enter Git Commit Message"
+      private: no
+      tags: ['config','documentation']
+  tasks: 
+    - set_fact:
+        git_message: "{{git_commit_prompt}}"
+      tags: ['config','documentation']
+    - name: Git - Add
+      shell: "git add ../*"
+      register: gitadd
+      tags: ['config','documentation']
+    - name: Git - commit
+      shell: git commit -m "{{ git_message }}"
+      register: gitcommit
+      tags: ['config','documentation']
+    - name: Git - push
+      shell: git push 
+      register: gitpush
+      tags: ['config','documentation']

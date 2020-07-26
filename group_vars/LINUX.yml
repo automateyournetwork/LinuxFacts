@@ -1,0 +1,5 @@
+---
+
+ansible_user: "{{hostvars[inventory_hostname]['linux_user']}}"
+ansible_password: "{{hostvars[inventory_hostname]['linux_password']}}"
+ansible_connection: ssh
